@@ -1,0 +1,22 @@
+<div ng-controller="HeaderCtrl" class="container header-section">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-6">MEAN Seed</div>
+        <div class="col-sm-6 text-right text-info">{{env}} environment</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p>This project can be used as a starting point for building MEAN stack applications.</p>
+      <ol>
+        <li>Copy everything to your new project folder</li>
+        <li>Change all occurrences of <code>meanSeed</code> to your own angular module name. Note that this name is also used in the <code>tasks/build.js</code> and <code>package.json</code> files</li>
+        <li>Change all occurrences of <code>mean-seed</code> to reflect your own application name. This is used for mongo database names in the <code>server/config/environment</code> config files</li>
+        <li>Change the <code>MEAN Seed</code> application name configured in <code>client/index.html</code> and <code>server/swagger.js</code> to your own application name</li>
+        <li>If you need a database, uncomment the <code>mongoose.connect</code> statement in <code>server/server.js</code></li>
+        <li>If you don't need a database, remove the mongoose code from <code>server/server.js</code>, remove the config from the various <code>server/config/environment</code> files and remove the mongoose module dependency from <code>package.json</code></li>
+        <li>Get dependencies with <code>npm install</code></li>
+      </ol>
+    </div>
+  </div>
+</div>

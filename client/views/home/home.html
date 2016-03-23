@@ -1,0 +1,12 @@
+<div class="container home-section">
+  <div class="alert alert-info" role="alert">
+    This project uses npm for all dependencies including client-side ones.
+    The bower.json and .bowerrc files have been retained in case you need them, but the gulp tasks will need to be modified to integrate the bower dependencies into the build.
+  </div>
+  <ul class="nav nav-tabs">
+    <li ng-repeat="tab in tabs" ng-class="{'active':isActive(tab)}">
+      <a ui-sref="{{tab.state}}">{{tab.title}}</a>
+    </li>
+  </ul>
+  <div class="tab-content" ui-view></div>
+</div>

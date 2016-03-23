@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="meanSeed">
+  <head>
+    <title>MEAN Seed</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <!-- build:css app.css -->
+
+    <link rel="stylesheet" href="styles/css/app.css">
+
+    <!-- endbuild -->
+
+  </head>
+  <body>
+
+    <div ng-include="'views/header/header.html'"></div>
+    <div ui-view></div>
+
+    <!-- build:js(node_modules) nodemodules.js -->
+
+    <!-- nodemodules:js -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
+    <!-- build:js app.js -->
+
+    <!-- inject:js -->
+    <script src="app.js"></script>
+    <script src="views/home/home.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="services/toUrl/toUrl.js"></script>
+    <script src="services/httpMethodOverride/httpMethodOverride.js"></script>
+    <script src="services/disableRequestCachingInIE/disableRequestCachingInIE.js"></script>
+    <script src="services/clientConfig/clientConfig.js"></script>
+    <!-- endinject -->
+
+    <!-- endbuild -->
+
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+
+  </body>
+</html>

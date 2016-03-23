@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="fa fa-refresh fa-spin"></i> gulp tdd</div>
+  <div class="panel-body">
+    <p>Run all server tests once and then watch for code changes.</p>
+    <p>If test code (<code>*.spec.js</code>) is changed, then the tests in that file are run.</p>
+    <p>If application code is changed then the tests in the associated <code>.spec.js</code> file are run (if one can be found). It must be named like the application code file only with <code>.spec</code> just before the <code>.js</code>.</p>
+    <p>NB: It doesn't support running client tests one file at a time: the --client option runs all the tests on each change.</p>
+    <ol>
+      <li>gulp tdd --client (run client tests and watch for changes, re-running all the tests on code change)</li>
+      <li>gulp tdd --server (this is the default behaviour as described above)</li>
+    </ol>
+  </div>
+</div>
