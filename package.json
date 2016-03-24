@@ -65,5 +65,9 @@
     "morgan": "^1.6.1",
     "newrelic": "^1.23.1",
     "ripe": "^0.2.1"
+  },
+  "scripts": {
+	"build": "gulp build",
+    "start" : "node ./server/server.js"
   }
 }
