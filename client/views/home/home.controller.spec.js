@@ -25,6 +25,7 @@ describe('Home Controller', function() {
   it('should define the tabs', function() {
     expect(scope.tabs[0]).toEqual({ state: 'home.gulp', title: 'gulp'});
     expect(scope.tabs[1]).toEqual({ state: 'home.api', title: 'api'});
+    expect(scope.tabs[2]).toEqual({ state: 'home.auth', title: 'auth'});
   });
 
   it('should indicate when a tab is active', function() {

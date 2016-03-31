@@ -8,11 +8,11 @@ describe('Client Config', function () {
 
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
+    commonBeforeEach($httpBackend);
   }));
 
   afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
+    commonAfterEach($httpBackend);
   });
 
   it('should use the server api to get the client config', inject(function(clientConfig) {

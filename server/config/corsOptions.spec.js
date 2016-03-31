@@ -7,7 +7,7 @@ var _ = require('lodash');
 describe('CORS options', function() {
 
   var acceptableOrigins = [
-    'http://localhost:9000'
+    //'http://localhost:9000'
   ];
 
   it('should allow requests from acceptable origins', function(done) {

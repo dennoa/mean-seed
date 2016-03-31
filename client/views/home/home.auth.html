@@ -1,0 +1,21 @@
+<div class="panel panel-default" ng-controller="HomeAuthCtrl">
+  <div class="panel-heading">satellizer</div>
+  <div class="panel-body">
+    <p>This project uses <a href="https://www.npmjs.com/package/satellizer">satellizer</a> for authentication with Google, Facebook, etc...</p>
+    <p>The <code>client/services/auth/auth.js</code> file configures satellizer for the various OAuth providers.</p>
+    <button class="btn btn-default" ng-click="authenticate('google')"><i class="fa fa-google"></i>oogle</button>
+    <!--
+    <button class="btn btn-default" ng-click="authenticate('github')"><i class="fa fa-github"></i> GitHub</button>
+    <button class="btn btn-default" ng-click="authenticate('live')"><i class="fa fa-windows"></i> Windows</button>
+    -->
+    <div ng-show="isAuthenticated()">
+      <div class="row">
+        <div class="col-md-6">
+          <img ng-show="userInfo.picture" ng-src="{{userInfo.picture}}"/>
+        </div>
+        <div class="col-md-6">
+          {{userInfo.name}}<br/>{{userInfo.email}}
+        </div>
+    </div>
+  </div>
+</div>

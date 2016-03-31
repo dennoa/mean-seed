@@ -18,8 +18,20 @@ var all = {
       }
     }
   },
-  
-  supportedHostnames: null
+
+  cors: {
+    supportedHostnames: null
+  },
+
+  auth: {
+    jwt: {
+      secret: 'M3anS33dJwtS3cr3t'
+    },
+    google: {
+      discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
+      clientSecret: 'GOOGLE_CLIENT_SECRET'
+    }
+  }  
 
 };
 

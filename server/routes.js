@@ -19,6 +19,7 @@ function defineOtherRoutes(app) {
 }
 
 module.exports = function(app) {
+  app.use('/auth', require('./auth'));
   defineApi(app);
   defineOtherRoutes(app);
 };

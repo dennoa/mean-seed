@@ -1,5 +1,7 @@
 'use strict';
 
+var filesToInject = require('./tasks/config/filesToInject');
+
 module.exports = function(config) {
 
   config.set({
@@ -29,18 +31,17 @@ module.exports = function(config) {
       'karma-ng-html2js-preprocessor'
     ],
 
-    files: [
-      'node_modules/angular/angular.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.js',
+    files: filesToInject.nodeModulesJs.concat([
       'node_modules/angular-mocks/angular-mocks.js',
       'client/app.js',
+      'client/app.spec.js',
       'client/directives/**/*.js',
       'client/directives/**/*.html',
       'client/filters/**/*.js',
       'client/services/**/*.js',
       'client/views/**/*.js',
       'client/views/**/*.html'
-    ],
+    ]),
 
     exclude: [
       'client/views/**/*.e2e.js'

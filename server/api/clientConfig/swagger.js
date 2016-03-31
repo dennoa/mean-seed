@@ -13,12 +13,7 @@ module.exports = {
           "200": {
             "description": "A configuration object",
             "schema": {
-              "$ref": "#/definitions/clientConfig",
-              "properties": {
-                "env": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/clientConfig"
             }
           }
         }

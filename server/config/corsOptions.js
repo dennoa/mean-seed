@@ -6,7 +6,7 @@ var config = require('./environment');
  * Change this as required to add / remove support for specific domains.
  * The regex matches against the origin host name.
  */
-var supportedHostnames = config.supportedHostnames;
+var supportedHostnames = config.cors.supportedHostnames;
 
 function getHostname(origin) {
   if (origin) {

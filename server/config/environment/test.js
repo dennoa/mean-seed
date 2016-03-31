@@ -2,6 +2,8 @@
 
 module.exports = {
   
-  supportedHostnames: /localhost/
+  cors: {
+    supportedHostnames: /localhost/
+  }
 
 };

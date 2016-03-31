@@ -12,5 +12,8 @@ angular.module('meanSeed').config(function($stateProvider) {
     })
     .state('home.api', {
       templateUrl: 'views/home/home.api.html'
+    })
+    .state('home.auth', {
+      templateUrl: 'views/home/home.auth.html'
     });
 });
