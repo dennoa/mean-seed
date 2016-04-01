@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+{
   "issuer": "https://accounts.google.com",
   "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
   "token_endpoint": "https://www.googleapis.com/oauth2/v4/token",
@@ -50,4 +48,4 @@ module.exports = {
     "plain",
     "S256"
   ]
-};
+}

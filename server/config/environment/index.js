@@ -29,9 +29,11 @@ var all = {
     },
     google: {
       discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
-      clientSecret: 'GOOGLE_CLIENT_SECRET'
+      clientSecret: 'ehkqzrpWSQFZaJ4nTpgwVhWa'
     }
-  }  
+  },
+
+  proxy: null
 
 };
 

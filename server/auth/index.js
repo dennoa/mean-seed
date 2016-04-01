@@ -1,10 +1,12 @@
 'use strict';
 
 var express = require('express');
-var googleController = require('./google/google.controller.js');
+var authController = require('./auth.controller.js');
+var google = require('./google');
 var router = express.Router();
 
-router.get('/google/discoveryDocument', googleController.discoveryDocument);
-router.post('/google', googleController.auth);
+router.get('/google/discoveryDocument', google.discoveryDocument);
+
+router.post('/google', authController(google.auth));
 
 module.exports = router;
