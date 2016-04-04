@@ -5,8 +5,12 @@
  */
 angular.module('meanSeed').config(function($authProvider) {
   $authProvider.google({
-    clientId: '294864420775-osujn3pv2omd0k0ed724vkbpe4c99sml.apps.googleusercontent.com'
+    clientId: 'GOOGLE_CLIENT_ID'
   });
+  $authProvider.github({
+    clientId: 'GITHUB_CLIENT_ID'
+  });
+
 }).run(function($http, toUrl, SatellizerConfig) {
   //Set the authorization endpoint from the google discovery document rather than hard-coding it. Should be a better way...
   $http.get(toUrl('/auth/google/discoveryDocument')).success(function(doc) {

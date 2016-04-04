@@ -2,4 +2,4 @@
  * These filenames will not be revisioned.
  */
 
-module.exports = ['index.html', 'favicon.ico', 'build.txt'];
+module.exports = ['index.html', 'favicon.ico'];

@@ -29,7 +29,12 @@ var all = {
     },
     google: {
       discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
-      clientSecret: 'ehkqzrpWSQFZaJ4nTpgwVhWa'
+      clientSecret: 'GOOGLE_CLIENT_SECRET'
+    },
+    github: {
+      tokenEndpoint: 'https://github.com/login/oauth/access_token',
+      userInfoEndpoint: 'https://api.github.com/user',
+      clientSecret: 'GITHUB_CLIENT_SECRET'
     }
   },
 
