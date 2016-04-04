@@ -48,6 +48,20 @@ describe('GitHub OAuth provider handler', function() {
     });
   });
 
+  it('should return token errors from github', function(done) {
+    var token = {
+      error: 'bad_stuff',
+      error_description: 'some bad stuff happened'
+    };
+    mockRequest.get = function(options, cb) {
+      cb(null, null, token);
+    };
+    github({}, function(err, userInfo) {
+      err.should.equal(token);
+      done();
+    });
+  });
+
   it('should use the token to retrieve user information from github', function(done) {
     var token = {
       access_token: 'some_access_token'

@@ -16,6 +16,7 @@ function lookupToken(clientParams) {
   return new Promise(function(resolve, reject) {
     request.get({ url: config.auth.github.tokenEndpoint, qs: tokenParams(clientParams), json: true, proxy: config.proxy }, function(err, res, token) {
       if (err) { return reject(err); }
+      if (token.error) { return reject(token); }
       resolve(token);
     });
   });
