@@ -10,6 +10,9 @@ angular.module('meanSeed').config(function($authProvider) {
   $authProvider.github({
     clientId: 'GITHUB_CLIENT_ID'
   });
+  $authProvider.linkedin({
+    clientId: 'LINKEDIN_CLIENT_ID'
+  });
 
 }).run(function($http, toUrl, SatellizerConfig) {
   //Set the authorization endpoint from the google discovery document rather than hard-coding it. Should be a better way...

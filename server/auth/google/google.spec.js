@@ -131,21 +131,24 @@ describe('Google OAuth provider handler', function() {
   });
 
   it('should return user information from google', function(done) {
-    var tokenDoc = {
+    var token = {
       access_token: 'some_access_token'
     };
     mockRequest.post = function(options, cb) {
-      cb(null, null, tokenDoc);
+      cb(null, null, token);
     };
     var googleUser = {
       email: 'my.email@home.com',
-      name: 'My Name'
+      name: 'My Name',
+      picture: 'http://my-picture.com'
     };
     mockRequest.get = function(options, cb) {
       cb(null, null, googleUser);
     };
     google.auth({}, function(err, userInfo) {
-      userInfo.should.equal(googleUser);
+      userInfo.email.should.equal(googleUser.email);
+      userInfo.name.should.equal(googleUser.name);
+      userInfo.picture.should.equal(googleUser.picture);
       done();
     });
   });

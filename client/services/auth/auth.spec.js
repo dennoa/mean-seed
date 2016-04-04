@@ -24,8 +24,12 @@ describe('Auth', function () {
     expect(SatellizerConfig.providers.google.authorizationEndpoint).toEqual('https://accounts.google.com/o/oauth2/v2/auth');
   }));
 
-    it('should set the github client id', inject(function(SatellizerConfig) {
-      expect(SatellizerConfig.providers.github.clientId).toBeDefined();
+  it('should set the github client id', inject(function(SatellizerConfig) {
+    expect(SatellizerConfig.providers.github.clientId).toBeDefined();
+  }));
+
+    it('should set the linkedin client id', inject(function(SatellizerConfig) {
+      expect(SatellizerConfig.providers.linkedin.clientId).toBeDefined();
     }));
 
 });

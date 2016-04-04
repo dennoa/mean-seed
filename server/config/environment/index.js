@@ -11,7 +11,7 @@ var all = {
   port: process.env.PORT || 9000,
 
   mongo: {
-    uri: 'mongodb://some-mongo-server/mean-seed-' + env,
+    uri: 'mongodb://uldcop002/node-seed-project-' + env,
     options: {
       db: {
         safe: true
@@ -20,7 +20,7 @@ var all = {
   },
 
   cors: {
-    supportedHostnames: null
+    supportedHostnames: /(copperapp|rancherapp|\.copper\.pub|\.auiag\.corp|\.iaglimited\.net|\.iag\.com\.au|\.cgu\.com\.au|\.edgeapp\.io)/
   },
 
   auth: {
@@ -35,10 +35,15 @@ var all = {
       tokenEndpoint: 'https://github.com/login/oauth/access_token',
       userInfoEndpoint: 'https://api.github.com/user',
       clientSecret: 'GITHUB_CLIENT_SECRET'
+    },
+    linkedin: {
+      tokenEndpoint: 'https://www.linkedin.com/uas/oauth2/accessToken',
+      userInfoEndpoint: 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)?format=json',
+      clientSecret: 'LINKEDIN_CLIENT_SECRET'
     }
   },
 
-  proxy: null
+  proxy: 'http://uldcop002:3128'
 
 };
 
