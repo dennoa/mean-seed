@@ -43,7 +43,7 @@ var all = {
     }
   },
 
-  proxy: 'http://uldcop002:3128'
+  proxy: null
 
 };
 
