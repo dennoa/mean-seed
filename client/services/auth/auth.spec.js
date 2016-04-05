@@ -28,8 +28,8 @@ describe('Auth', function () {
     expect(SatellizerConfig.providers.github.clientId).toBeDefined();
   }));
 
-    it('should set the linkedin client id', inject(function(SatellizerConfig) {
-      expect(SatellizerConfig.providers.linkedin.clientId).toBeDefined();
-    }));
+  it('should set the linkedin client id', inject(function(SatellizerConfig) {
+    expect(SatellizerConfig.providers.linkedin.clientId).toBeDefined();
+  }));
 
 });
