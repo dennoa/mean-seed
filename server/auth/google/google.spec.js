@@ -54,23 +54,24 @@ describe('Google OAuth provider handler', function() {
   });
 
   it('should retrieve the token from google', function(done) {
-    var clientParams = {
+    var commonTokenParams = {
       code: 'some code from google',
-      clientId: 'the google client id for the project',
-      redirectUri: 'http://acceptable.for.project.com.au'
+      client_id: 'the google client id for the project',
+      redirect_uri: 'http://acceptable.for.project.com.au',
+      grant_type: 'authorization_code'
     };
     mockRequest.post = function(options, cb) {
       options.url.should.equal('https://www.googleapis.com/oauth2/v4/token');
-      options.form.code.should.equal(clientParams.code);
-      options.form.client_id.should.equal(clientParams.clientId);
-      options.form.redirect_uri.should.equal(clientParams.redirectUri);
+      options.form.code.should.equal(commonTokenParams.code);
+      options.form.client_id.should.equal(commonTokenParams.client_id);
+      options.form.redirect_uri.should.equal(commonTokenParams.redirect_uri);
       options.form.client_secret.should.equal(config.auth.google.clientSecret);
-      options.form.grant_type.should.equal('authorization_code');
+      options.form.grant_type.should.equal(commonTokenParams.grant_type);
       options.json.should.equal(true);
       should(options.proxy).equal(config.proxy);
       cb(errText);
     };
-    google.auth(clientParams, function(err, userInfo) {
+    google.auth(commonTokenParams, function(err, userInfo) {
       err.should.equal(errText);
       done();
     });

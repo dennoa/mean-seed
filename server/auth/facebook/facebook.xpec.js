@@ -3,9 +3,9 @@
 var should = require('should');
 var rewire = require('rewire');
 var config = require('../../config/environment');
-var github = rewire('./index');
+var facebook = rewire('./index');
 
-describe('GitHub OAuth provider handler', function() {
+describe('Facebook OAuth provider handler', function() {
 
   var mocks, revert;
   var errText = 'expected for testing';
@@ -17,7 +17,7 @@ describe('GitHub OAuth provider handler', function() {
     mocks = {
       request: mockRequest
     };
-    revert = github.__set__(mocks);
+    revert = facebook.__set__(mocks);
     done();
   });
 
@@ -26,29 +26,29 @@ describe('GitHub OAuth provider handler', function() {
     done();
   });
 
-  it('should retrieve the token from github', function(done) {
+  it('should retrieve the token from facebook', function(done) {
     var commonTokenParams = {
-      code: 'some code from github',
-      client_id: 'the github client id for the project',
+      code: 'some code from facebook',
+      client_id: 'the facebook client id for the project',
       redirect_uri: 'http://acceptable.for.project.com.au'
     };
     mockRequest.get = function(options, cb) {
-      options.url.should.equal(config.auth.github.tokenEndpoint);
+      options.url.should.equal(config.auth.facebook.tokenEndpoint);
       options.qs.code.should.equal(commonTokenParams.code);
       options.qs.client_id.should.equal(commonTokenParams.client_id);
       options.qs.redirect_uri.should.equal(commonTokenParams.redirect_uri);
-      options.qs.client_secret.should.equal(config.auth.github.clientSecret);
+      options.qs.client_secret.should.equal(config.auth.facebook.clientSecret);
       options.json.should.equal(true);
       should(options.proxy).equal(config.proxy);
       cb(errText);
     };
-    github(commonTokenParams, function(err, userInfo) {
+    facebook(commonTokenParams, function(err, userInfo) {
       err.should.equal(errText);
       done();
     });
   });
 
-  it('should return token errors from github', function(done) {
+  it('should return token errors from facebook', function(done) {
     var token = {
       error: 'bad_stuff',
       error_description: 'some bad stuff happened'
@@ -56,19 +56,18 @@ describe('GitHub OAuth provider handler', function() {
     mockRequest.get = function(options, cb) {
       cb(null, null, token);
     };
-    github({}, function(err, userInfo) {
+    facebook({}, function(err, userInfo) {
       err.should.equal(token);
       done();
     });
   });
 
-  it('should use the token to retrieve user information from github', function(done) {
+  it('should use the token to retrieve user information from facebook', function(done) {
     var token = {
       access_token: 'some_access_token'
     };
     var getUserInfo = function(options, cb) {
-      options.url.should.equal(config.auth.github.userInfoEndpoint);
-      options.headers['User-Agent'].should.equal('Node');
+      options.url.should.equal(config.auth.facebook.userInfoEndpoint);
       options.qs.access_token.should.equal(token.access_token);
       options.json.should.equal(true);
       should(options.proxy).equal(config.proxy);
@@ -78,32 +77,32 @@ describe('GitHub OAuth provider handler', function() {
       mockRequest.get = getUserInfo;
       cb(null, null, token);
     };
-    github({}, function(err, userInfo) {
+    facebook({}, function(err, userInfo) {
       err.should.equal(errText);
       done();
     });
   });
 
-  it('should return user information from github', function(done) {
+  it('should return user information from facebook', function(done) {
     var token = {
       access_token: 'some_access_token'
     };
-    var githubUser = {
+    var facebookUser = {
       email: 'my.email@home.com',
       name: 'My Name',
-      avatar_url: 'http://my-avatar.com.au'
+      id: 'my_id'
     };
     var getUserInfo = function(options, cb) {
-      cb(null, null, githubUser);
+      cb(null, null, facebookUser);
     };
     mockRequest.get = function(options, cb) {
       mockRequest.get = getUserInfo;
       cb(null, null, token);
     };
-    github({}, function(err, userInfo) {
-      userInfo.email.should.equal(githubUser.email);
-      userInfo.name.should.equal(githubUser.name);
-      userInfo.picture.should.equal(githubUser.avatar_url);
+    facebook({}, function(err, userInfo) {
+      userInfo.email.should.equal(facebookUser.email);
+      userInfo.name.should.equal(facebookUser.name);
+      userInfo.picture.should.equal('https://graph.facebook.com/v2.5/' + facebookUser.id + '/picture?type=large');
       done();
     });
   });

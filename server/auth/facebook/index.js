@@ -6,13 +6,13 @@ var _ = require('lodash');
 
 function tokenParams(commonTokenParams) {
   return _.merge(commonTokenParams, {
-    client_secret: config.auth.linkedin.clientSecret
+    client_secret: config.auth.facebook.clientSecret
   });
 }
 
 function lookupToken(commonTokenParams) {
   return new Promise(function(resolve, reject) {
-    request.post({ url: config.auth.linkedin.tokenEndpoint, form: tokenParams(commonTokenParams), json: true, proxy: config.proxy }, function(err, res, token) {
+    request.get({ url: config.auth.facebook.tokenEndpoint, qs: tokenParams(commonTokenParams), json: true, proxy: config.proxy }, function(err, res, token) {
       if (err) { return reject(err); }
       if (token.error) { return reject(token); }
       resolve(token);
@@ -22,14 +22,14 @@ function lookupToken(commonTokenParams) {
 
 function toStandardUserInfo(userInfo) {
   return {
-    email: userInfo.emailAddress,
-    name: userInfo.firstName + ' ' + userInfo.lastName,
-    picture: userInfo.pictureUrl
+    email: userInfo.email,
+    name: userInfo.name,
+    picture: 'https://graph.facebook.com/v2.5/' + userInfo.id + '/picture?type=large'
   };
 }
 
 function retrieveUserInfo(token, cb) {
-  request.get({ url: config.auth.linkedin.userInfoEndpoint, headers: {Authorization: 'Bearer ' + token.access_token}, json: true, proxy: config.proxy }, function(err, res, userInfo) {
+  request.get({ url: config.auth.facebook.userInfoEndpoint, qs: token, json: true, proxy: config.proxy }, function(err, res, userInfo) {
     if (err) { return cb(err); }
     if (userInfo.error) { return cb(userInfo); }
     cb(null, toStandardUserInfo(userInfo));

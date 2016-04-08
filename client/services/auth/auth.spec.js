@@ -42,9 +42,18 @@ describe('Auth', function () {
     expect(SatellizerConfig.providers.linkedin.clientId).toBeDefined();
   }));
 
-  it('should include the state parameter to combat CSRF attacks for github auths', inject(function(SatellizerConfig) {
+  it('should include the state parameter to combat CSRF attacks for linkedin auths', inject(function(SatellizerConfig) {
     expect(SatellizerConfig.providers.linkedin.requiredUrlParams.indexOf('state')).toBeGreaterThan(-1);
     expect(SatellizerConfig.providers.linkedin.state()).toBeDefined();
+  }));
+
+  it('should set the facebook client id', inject(function(SatellizerConfig) {
+    expect(SatellizerConfig.providers.facebook.clientId).toBeDefined();
+  }));
+
+  it('should include the state parameter to combat CSRF attacks for facebook auths', inject(function(SatellizerConfig) {
+    expect(SatellizerConfig.providers.facebook.optionalUrlParams.indexOf('state')).toBeGreaterThan(-1);
+    expect(SatellizerConfig.providers.facebook.state()).toBeDefined();
   }));
 
 });

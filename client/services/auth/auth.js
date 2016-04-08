@@ -11,17 +11,22 @@ angular.module('meanSeed').config(function($authProvider) {
   }
 
   $authProvider.google({
-    clientId: 'GOOGLE_CLIENT_ID',
+    clientId: 'CLIENT_ID',
     optionalUrlParams: ['display', 'state'],
     state: stateToAvoidCsrf
   });
   $authProvider.github({
-    clientId: 'GITHUB_CLIENT_ID',
+    clientId: 'CLIENT_ID',
     optionalUrlParams: ['scope', 'state'],
     state: stateToAvoidCsrf
   });
   $authProvider.linkedin({
-    clientId: 'LINKEDIN_CLIENT_ID',
+    clientId: 'CLIENT_ID',
+    state: stateToAvoidCsrf
+  });
+  $authProvider.facebook({
+    clientId: 'CLIENT_ID',
+    optionalUrlParams: ['state'],
     state: stateToAvoidCsrf
   });
 

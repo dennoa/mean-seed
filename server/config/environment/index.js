@@ -29,17 +29,22 @@ var all = {
     },
     google: {
       discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
-      clientSecret: 'GOOGLE_CLIENT_SECRET'
+      clientSecret: 'CLIENT_SECRET'
     },
     github: {
       tokenEndpoint: 'https://github.com/login/oauth/access_token',
       userInfoEndpoint: 'https://api.github.com/user',
-      clientSecret: 'GITHUB_CLIENT_SECRET'
+      clientSecret: 'CLIENT_SECRET'
     },
     linkedin: {
       tokenEndpoint: 'https://www.linkedin.com/uas/oauth2/accessToken',
       userInfoEndpoint: 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)?format=json',
-      clientSecret: 'LINKEDIN_CLIENT_SECRET'
+      clientSecret: 'CLIENT_SECRET'
+    },
+    facebook: {
+      tokenEndpoint: 'https://graph.facebook.com/v2.5/oauth/access_token',
+      userInfoEndpoint: 'https://graph.facebook.com/v2.5/me?fields=id,email,first_name,last_name,link,name',
+      clientSecret: 'CLIENT_SECRET'
     }
   },
 

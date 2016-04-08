@@ -3,21 +3,18 @@
 var config = require('../../config/environment/index');
 var discoveryDocument = require('./discoveryDocument');
 var request = require('request');
+var _ = require('lodash');
 
-function tokenParams(clientParams) {
-  return {
-    code: clientParams.code,
-    client_id: clientParams.clientId,
-    client_secret: config.auth.google.clientSecret,
-    redirect_uri: clientParams.redirectUri,
-    grant_type: 'authorization_code'
-  };
+function tokenParams(commonTokenParams) {
+  return _.merge(commonTokenParams, {
+    client_secret: config.auth.google.clientSecret
+  });
 }
 
-function lookupToken(clientParams) {
+function lookupToken(commonTokenParams) {
   return new Promise(function(resolve, reject) {
     discoveryDocument.get().then(function(doc) {
-      request.post({ url: doc.token_endpoint, form: tokenParams(clientParams), json: true, proxy: config.proxy }, function(err, res, token) {
+      request.post({ url: doc.token_endpoint, form: tokenParams(commonTokenParams), json: true, proxy: config.proxy }, function(err, res, token) {
         if (err) { return reject(err); }
         if (token.error) { return reject(token); }
         resolve(token);
@@ -44,8 +41,8 @@ function retrieveUserInfo(token, cb) {
   });
 }
 
-function auth(clientParams, cb) {
-  lookupToken(clientParams).then(function(token) {
+function auth(commonTokenParams, cb) {
+  lookupToken(commonTokenParams).then(function(token) {
     retrieveUserInfo(token, cb);
   }, cb);
 }

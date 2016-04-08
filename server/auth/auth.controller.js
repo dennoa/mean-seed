@@ -2,13 +2,22 @@
 
 var jwt = require('./jwt');
 
+function commonTokenParams(clientParams) {
+  return {
+    code: clientParams.code,
+    client_id: clientParams.clientId,
+    redirect_uri: clientParams.redirectUri,
+    grant_type: 'authorization_code'
+  };
+}
+
 /**
  * All OAuth providers perform the required steps to verify the user and retrieve their basic information
  * @param providerHandler The handler for a particular OAuth provider such as google, facebook, linkedin, etc...
  */
-module.exports = function(providerHandler) {
+function auth(providerHandler) {
   return function(req, res) {
-    providerHandler(req.body, function(err, userInfo) {
+    providerHandler(commonTokenParams(req.body), function(err, userInfo) {
       if (err) {
         return res.status(500).send(err);
       }
@@ -18,3 +27,5 @@ module.exports = function(providerHandler) {
     });
   };
 };
+
+module.exports = auth;

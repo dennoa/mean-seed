@@ -2,19 +2,17 @@
 
 var config = require('../../config/environment/index');
 var request = require('request');
+var _ = require('lodash');
 
-function tokenParams(clientParams) {
-  return {
-    code: clientParams.code,
-    client_id: clientParams.clientId,
-    client_secret: config.auth.github.clientSecret,
-    redirect_uri: clientParams.redirectUri
-  };
+function tokenParams(commonTokenParams) {
+  return _.merge(commonTokenParams, {
+    client_secret: config.auth.github.clientSecret
+  });
 }
 
-function lookupToken(clientParams) {
+function lookupToken(commonTokenParams) {
   return new Promise(function(resolve, reject) {
-    request.get({ url: config.auth.github.tokenEndpoint, qs: tokenParams(clientParams), json: true, proxy: config.proxy }, function(err, res, token) {
+    request.get({ url: config.auth.github.tokenEndpoint, qs: tokenParams(commonTokenParams), json: true, proxy: config.proxy }, function(err, res, token) {
       if (err) { return reject(err); }
       if (token.error) { return reject(token); }
       resolve(token);
@@ -37,8 +35,8 @@ function retrieveUserInfo(token, cb) {
   });
 }
 
-function auth(clientParams, cb) {
-  lookupToken(clientParams).then(function(token) {
+function auth(commonTokenParams, cb) {
+  lookupToken(commonTokenParams).then(function(token) {
     retrieveUserInfo(token, cb);
   }, cb);
 }
