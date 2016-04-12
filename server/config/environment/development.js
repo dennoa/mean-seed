@@ -2,7 +2,7 @@
 
 module.exports = {
   mongo: {
-    uri: 'mongodb://localhost/mean-seed-project-dev'
+    uri: 'mongodb://localhost/mean-seed-dev'
   },
 
   header: {

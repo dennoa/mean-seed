@@ -11,7 +11,7 @@ var all = {
   port: process.env.PORT || 9000,
 
   mongo: {
-    uri: 'mongodb://uldcop002/node-seed-project-' + env,
+    uri: 'mongodb://uldcop002/mean-seed-' + env,
     options: {
       db: {
         safe: true
