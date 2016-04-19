@@ -107,4 +107,25 @@ describe('Facebook OAuth provider handler', function() {
     });
   });
 
+  it('should return user information access errors from facebook', function(done) {
+    var token = {
+      access_token: 'some_access_token'
+    };
+    var facebookUser = {
+      error: 'bad_stuff',
+      error_description: 'some bad stuff happened'
+    };
+    var getUserInfo = function(options, cb) {
+      cb(null, null, facebookUser);
+    };
+    mockRequest.get = function(options, cb) {
+      mockRequest.get = getUserInfo;
+      cb(null, null, token);
+    };
+    facebook({}, function(err, userInfo) {
+      err.should.equal(facebookUser);
+      done();
+    });
+  });
+
 });

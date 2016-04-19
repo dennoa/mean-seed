@@ -20,7 +20,7 @@ var all = {
   },
 
   cors: {
-    supportedHostnames: /(copperapp|rancherapp|\.copper\.pub|\.auiag\.corp|\.iaglimited\.net|\.iag\.com\.au|\.cgu\.com\.au|\.edgeapp\.io)/
+    supportedHostnames: null
   },
 
   auth: {

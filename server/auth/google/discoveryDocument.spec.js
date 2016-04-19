@@ -4,6 +4,7 @@ var should = require('should');
 var rewire = require('rewire');
 var discoveryDocument = rewire('./discoveryDocument');
 var config = require('../../config/environment');
+var fs = require('fs');
 
 describe('Google Discovery Document lookup', function() {
 
@@ -12,10 +13,14 @@ describe('Google Discovery Document lookup', function() {
   var mockRequest = {
     get: function(options, cb) { cb(errText); }
   };
+  var mockFs = {
+    readFile: fs.readFile
+  };
 
   beforeEach(function(done) {
     mocks = {
-      request: mockRequest
+      request: mockRequest,
+      fs: mockFs
     };
     revert = discoveryDocument.__set__(mocks);
     discoveryDocument.refresh();
@@ -67,6 +72,21 @@ describe('Google Discovery Document lookup', function() {
         done();
       });
     }, done);
+  });
+  
+  it('should return an error when failing to load the default discovery document', function(done) {
+    mockRequest.get = function(options, cb) {
+      cb(errText);
+    };
+    mockFs.readFile = function(path, encoding, cb) {
+      cb(errText);
+    };
+    discoveryDocument.get().then(function(doc) {
+      done('failed to return error from loading default doc');
+    }, function(err) {
+      err.should.equal(errText);
+      done();
+    });    
   });
 
 });

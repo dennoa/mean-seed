@@ -2,12 +2,6 @@
 
 var config = require('./environment');
 
-/* This is a regex identifying the supported domains for cross-origin resource sharing requests.
- * Change this as required to add / remove support for specific domains.
- * The regex matches against the origin host name.
- */
-var supportedHostnames = config.cors.supportedHostnames;
-
 function getHostname(origin) {
   if (origin) {
     var start = origin.indexOf('://');
@@ -23,7 +17,9 @@ function getHostname(origin) {
 }
 
 function isSupported(origin) {
-  return supportedHostnames && !!getHostname(origin).match(supportedHostnames);
+  //supportedHostnames is a regex identifying the supported domains for cross-origin resource sharing requests. It matches against the origin host name
+  var supportedHostnames = config.cors.supportedHostnames;
+  return !!supportedHostnames && !!getHostname(origin).match(supportedHostnames);
 }
 
 module.exports = {

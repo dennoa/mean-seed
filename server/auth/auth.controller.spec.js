@@ -58,5 +58,22 @@ describe('Auth Controller', function() {
     }
     authController(provider)(req, res);
   });
+  
+  it('should return errors from the auth provider', function(done) {
+    var error = 'expected for testing';
+    var provider = function(params, cb) {
+      cb(error);
+      done();
+    };
+    res.status = function(code) {
+      code.should.equal(500);
+      return {
+        send: function(err) {
+          err.should.equal(error)
+        }
+      };
+    }
+    authController(provider)(req, res);
+  });
 
 });

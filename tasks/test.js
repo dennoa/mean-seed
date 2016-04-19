@@ -10,6 +10,7 @@ var KarmaServer = require('karma').Server;
 var plumber = require('gulp-plumber');
 var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
+var istanbul = require('gulp-istanbul');
 
 /**
  * Log. With options.
@@ -30,12 +31,10 @@ function runServerTests(done) {
   gulp.src('server/**/*.spec.js', {read: false})
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
-    .once('error', function(err) {
-      done(err);
-    })
-    .once('end', function() {
-      done();
-    });
+    .pipe(istanbul.writeReports({ reportOpts: { dir: './coverage/server' }}))
+    .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 }}))
+    .once('error', done)
+    .once('end', done);
 }
 
 function testServer(done) {

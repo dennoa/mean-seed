@@ -17,5 +17,6 @@ gulp.task('build', require('./tasks/build'));
 gulp.task('bump', ['version'], require('./tasks/chore').bump);
 gulp.task('version', require('./tasks/chore').version);
 gulp.task('control', require('./tasks/control'));
-gulp.task('test', require('./tasks/test').test);
+gulp.task('testPrep', require('./tasks/testPrep'));
+gulp.task('test', ['testPrep'], require('./tasks/test').test);
 gulp.task('tdd', require('./tasks/test').tdd);

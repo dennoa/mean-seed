@@ -9,6 +9,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     preprocessors: {
+      'client/**/!(*.spec).js': ['coverage'],
       '**/*.html': ['ng-html2js']
     },
 
@@ -28,6 +29,7 @@ module.exports = function(config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
+      'karma-coverage',
       'karma-ng-html2js-preprocessor'
     ],
 
@@ -47,8 +49,16 @@ module.exports = function(config) {
       'client/views/**/*.e2e.js'
     ],
 
-    reporters: ['progress'],
-
+    reporters: ['progress', 'coverage'],
+    
+    coverageReporter: {
+      type: 'lcov',
+      dir : 'coverage/client',
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
+    },
+    
     port: 9876,
 
     colors: true,
