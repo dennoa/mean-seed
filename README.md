@@ -1,4 +1,4 @@
-# mean-seed
+# MEAN Seed
 This project is a starting point for building MEAN stack applications.
 
 1. Copy this code into a folder for your new app.
