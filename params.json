@@ -1,0 +1,6 @@
+{
+  "name": "MEAN Seed",
+  "tagline": "Seed project for MEAN stack applications",
+  "body": "### MEAN Seed.\r\nThis project is a starting point for building MEAN stack applications. \r\n\r\n1. Copy this code into a folder for your new app.\r\n2. npm install\r\n3. gulp\r\n\r\nThe seed application should fire up in your browser. It displays instructions on how to get started.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
