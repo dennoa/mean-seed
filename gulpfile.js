@@ -19,4 +19,4 @@ gulp.task('version', require('./tasks/chore').version);
 gulp.task('control', require('./tasks/control'));
 gulp.task('testPrep', require('./tasks/testPrep'));
 gulp.task('test', ['testPrep'], require('./tasks/test').test);
-gulp.task('tdd', require('./tasks/test').tdd);
+gulp.task('tdd', ['testPrep'], require('./tasks/test').tdd);
