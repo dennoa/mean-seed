@@ -25,26 +25,26 @@ var all = {
 
   auth: {
     jwt: {
-      secret: 'M3anS33dJwtS3cr3t'
+      secret: process.env.AUTH_JWT_SECRET || 'M3anS33dJwtS3cr3t'
     },
     google: {
       discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
-      clientSecret: 'CLIENT_SECRET'
+      clientSecret: process.env.AUTH_GOOGLE_SECRET || 'CLIENT_SECRET'
     },
     github: {
       tokenEndpoint: 'https://github.com/login/oauth/access_token',
       userInfoEndpoint: 'https://api.github.com/user',
-      clientSecret: 'CLIENT_SECRET'
+      clientSecret: process.env.AUTH_GITHUB_SECRET || 'CLIENT_SECRET'
     },
     linkedin: {
       tokenEndpoint: 'https://www.linkedin.com/uas/oauth2/accessToken',
       userInfoEndpoint: 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)?format=json',
-      clientSecret: 'CLIENT_SECRET'
+      clientSecret: process.env.AUTH_LINKEDIN_SECRET || 'CLIENT_SECRET'
     },
     facebook: {
       tokenEndpoint: 'https://graph.facebook.com/v2.5/oauth/access_token',
       userInfoEndpoint: 'https://graph.facebook.com/v2.5/me?fields=id,email,first_name,last_name,link,name',
-      clientSecret: 'CLIENT_SECRET'
+      clientSecret: process.env.AUTH_FACEBOOK_SECRET || 'CLIENT_SECRET'
     }
   },
 
