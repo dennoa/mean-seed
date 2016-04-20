@@ -22,6 +22,7 @@ function lookupToken(commonTokenParams) {
 
 function toStandardUserInfo(userInfo) {
   return {
+    ids: { facebook: userInfo.id },
     email: userInfo.email,
     name: userInfo.name,
     picture: 'https://graph.facebook.com/v2.5/' + userInfo.id + '/picture?type=large'

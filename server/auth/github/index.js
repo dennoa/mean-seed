@@ -22,6 +22,7 @@ function lookupToken(commonTokenParams) {
 
 function toStandardUserInfo(userInfo) {
   return {
+    ids: { github: userInfo.id },
     email: userInfo.email,
     name: userInfo.name,
     picture: userInfo.avatar_url

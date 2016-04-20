@@ -113,6 +113,7 @@ describe('LinkedIn OAuth provider handler', function() {
       cb(null, null, token);
     };
     var linkedInUser = {
+      id: 'ABC12345',
       emailAddress: 'my.email@home.com',
       firstName: 'My',
       lastName: 'Name',
@@ -122,6 +123,7 @@ describe('LinkedIn OAuth provider handler', function() {
       cb(null, null, linkedInUser);
     };
     linkedin({}, function(err, userInfo) {
+      userInfo.ids.linkedin.should.equal(linkedInUser.id);
       userInfo.email.should.equal(linkedInUser.emailAddress);
       userInfo.name.should.equal(linkedInUser.firstName + ' ' + linkedInUser.lastName);
       userInfo.picture.should.equal(linkedInUser.pictureUrl);

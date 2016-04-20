@@ -139,6 +139,7 @@ describe('Google OAuth provider handler', function() {
       cb(null, null, token);
     };
     var googleUser = {
+      sub: 12345,
       email: 'my.email@home.com',
       name: 'My Name',
       picture: 'http://my-picture.com'
@@ -147,6 +148,7 @@ describe('Google OAuth provider handler', function() {
       cb(null, null, googleUser);
     };
     google.auth({}, function(err, userInfo) {
+      userInfo.ids.google.should.equal(googleUser.sub);
       userInfo.email.should.equal(googleUser.email);
       userInfo.name.should.equal(googleUser.name);
       userInfo.picture.should.equal(googleUser.picture);

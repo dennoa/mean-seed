@@ -25,6 +25,7 @@ function lookupToken(commonTokenParams) {
 
 function toStandardUserInfo(userInfo) {
   return {
+    ids: { google: userInfo.sub },
     email: userInfo.email,
     name: userInfo.name,
     picture: userInfo.picture

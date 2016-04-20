@@ -22,6 +22,7 @@ function lookupToken(commonTokenParams) {
 
 function toStandardUserInfo(userInfo) {
   return {
+    ids: { linkedin: userInfo.id },
     email: userInfo.emailAddress,
     name: userInfo.firstName + ' ' + userInfo.lastName,
     picture: userInfo.pictureUrl

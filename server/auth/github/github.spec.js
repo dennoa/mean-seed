@@ -89,6 +89,7 @@ describe('GitHub OAuth provider handler', function() {
       access_token: 'some_access_token'
     };
     var githubUser = {
+      id: 12345,
       email: 'my.email@home.com',
       name: 'My Name',
       avatar_url: 'http://my-avatar.com.au'
@@ -101,6 +102,7 @@ describe('GitHub OAuth provider handler', function() {
       cb(null, null, token);
     };
     github({}, function(err, userInfo) {
+      userInfo.ids.github.should.equal(githubUser.id);
       userInfo.email.should.equal(githubUser.email);
       userInfo.name.should.equal(githubUser.name);
       userInfo.picture.should.equal(githubUser.avatar_url);

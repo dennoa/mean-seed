@@ -14,6 +14,10 @@
         </div>
         <div class="col-md-6">
           {{userInfo.name}}<br/>{{userInfo.email}}
+          <div ng-show="userInfo.ids.facebook">Facebook Id: {{userInfo.ids.facebook}}</div>
+          <div ng-show="userInfo.ids.google">Google Id: {{userInfo.ids.google}}</div>
+          <div ng-show="userInfo.ids.github">Github Id: {{userInfo.ids.github}}</div>
+          <div ng-show="userInfo.ids.linkedin">LinkedIn Id: {{userInfo.ids.linkedin}}</div>
         </div>
       </div>
     </div>

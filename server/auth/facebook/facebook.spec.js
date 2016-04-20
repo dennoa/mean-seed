@@ -88,9 +88,9 @@ describe('Facebook OAuth provider handler', function() {
       access_token: 'some_access_token'
     };
     var facebookUser = {
+      id: 12345,
       email: 'my.email@home.com',
-      name: 'My Name',
-      id: 'my_id'
+      name: 'My Name'
     };
     var getUserInfo = function(options, cb) {
       cb(null, null, facebookUser);
@@ -100,6 +100,7 @@ describe('Facebook OAuth provider handler', function() {
       cb(null, null, token);
     };
     facebook({}, function(err, userInfo) {
+      userInfo.ids.facebook.should.equal(facebookUser.id);
       userInfo.email.should.equal(facebookUser.email);
       userInfo.name.should.equal(facebookUser.name);
       userInfo.picture.should.equal('https://graph.facebook.com/v2.5/' + facebookUser.id + '/picture?type=large');
