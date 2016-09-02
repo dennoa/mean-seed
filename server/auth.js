@@ -4,7 +4,7 @@ module.exports = require('stateless-auth')({
   },
   providers: {
     github: { 
-      clientSecret: '4ac91f6b0448d3c4a7efe4be0e7c7befc54e2c4d' 
+      clientSecret: 'CLIENT_SECRET' 
     },
     login: {
       findUser: (credentials, callback) => {
