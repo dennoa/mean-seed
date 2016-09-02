@@ -1,9 +1,11 @@
 'use strict';
 
-var config = require('./config/environment');
+const config = require('./config/environment');
+const auth = require('./auth');
 
 function defineApi(app) {
   app.use('/swagger', require('./swagger'));
+  app.use('/api', auth.secure());
   app.use('/api/clientConfig', require('./api/clientConfig'));
 }
 
@@ -19,7 +21,7 @@ function defineOtherRoutes(app) {
 }
 
 module.exports = function(app) {
-  app.use('/auth', require('./auth'));
+  app.use('/auth', auth.routes);
   defineApi(app);
   defineOtherRoutes(app);
 };

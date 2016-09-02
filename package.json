@@ -68,7 +68,8 @@
     "morgan": "^1.6.1",
     "newrelic": "^1.23.1",
     "ripe": "^0.2.1",
-    "satellizer": "^0.14.0"
+    "satellizer": "^0.14.0",
+    "stateless-auth": "^1.0.4"
   },
   "scripts": {
     "build": "gulp build",
