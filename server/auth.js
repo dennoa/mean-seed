@@ -1,10 +1,14 @@
+'use strict';
+
+const config = require('./config/environment');
+
 module.exports = require('stateless-auth')({
   jwt: { 
-    secret: 'm3ans33d' 
+    secret: config.auth.jwt.secret 
   },
   providers: {
     github: { 
-      clientSecret: 'CLIENT_SECRET' 
+      clientSecret: config.auth.github.clientSecret 
     },
     login: {
       findUser: (credentials, callback) => {

@@ -3,6 +3,7 @@
 var path = require('path');
 var _ = require('lodash');
 var env = process.env.NODE_ENV || 'development';
+const ob = require('config-obfuscator')({ filename: __dirname + '/ob.cfg', key: process.env.CONFIG_KEY });
 
 var all = {
 
@@ -25,26 +26,19 @@ var all = {
 
   auth: {
     jwt: {
-      secret: process.env.AUTH_JWT_SECRET || 'M3anS33dJwtS3cr3t'
+      secret: 'AUTH_JWT_SECRET'
     },
     google: {
-      discoveryDocumentUrl: 'https://accounts.google.com/.well-known/openid-configuration',
-      clientSecret: process.env.AUTH_GOOGLE_SECRET || 'CLIENT_SECRET'
+      clientSecret: 'AUTH_GOOGLE_SECRET'
     },
     github: {
-      tokenEndpoint: 'https://github.com/login/oauth/access_token',
-      userInfoEndpoint: 'https://api.github.com/user',
-      clientSecret: process.env.AUTH_GITHUB_SECRET || 'CLIENT_SECRET'
+      clientSecret: 'AUTH_GITHUB_SECRET'
     },
     linkedin: {
-      tokenEndpoint: 'https://www.linkedin.com/uas/oauth2/accessToken',
-      userInfoEndpoint: 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)?format=json',
-      clientSecret: process.env.AUTH_LINKEDIN_SECRET || 'CLIENT_SECRET'
+      clientSecret: 'AUTH_LINKEDIN_SECRET'
     },
     facebook: {
-      tokenEndpoint: 'https://graph.facebook.com/v2.5/oauth/access_token',
-      userInfoEndpoint: 'https://graph.facebook.com/v2.5/me?fields=id,email,first_name,last_name,link,name',
-      clientSecret: process.env.AUTH_FACEBOOK_SECRET || 'CLIENT_SECRET'
+      clientSecret: 'AUTH_FACEBOOK_SECRET'
     }
   },
 
@@ -52,4 +46,4 @@ var all = {
 
 };
 
-module.exports = _.merge(all, require('./' + all.env + '.js'));
+module.exports = _.merge(all, require('./' + all.env + '.js'), ob.get(all.env));
